@@ -2,7 +2,7 @@
 Console.WriteLine(@"Seja bem vindo ao sistema de ficha cadastral.
         Para iniciar, digite seu nome:
     ");
-nomeUsuario = Console.ReadLine();
+nomeUsuario = Console.ReadLine(); /* Ler Linha */
 
 Console.WriteLine("Digite seu e-Mail:");
 eMailUsuario = Console.ReadLine();

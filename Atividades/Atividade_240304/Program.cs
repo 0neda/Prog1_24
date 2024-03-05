@@ -12,8 +12,6 @@ float firstNumber = float.Parse(Console.ReadLine());
 Console.WriteLine("Digite o segundo número");
 float secondNumber = float.Parse(Console.ReadLine());
 
-Console.WriteLine($"{firstNumber} {secondNumber}");
-
 float finalResult;
 
 switch(userSelection)

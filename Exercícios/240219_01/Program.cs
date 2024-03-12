@@ -55,3 +55,4 @@ float myFloat = 10.0f;
 double myDouble = 5d;
 decimal myDecimal = 7m;
 int myInteger = 0;
+

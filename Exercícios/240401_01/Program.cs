@@ -16,3 +16,4 @@ Customer c3 = new Customer{ // Construtor por atribuição (Attribution Construc
     Name = "Seu Nelson",
     EmailAddress = "nelsinho@bocamole.com.br"
 };
+

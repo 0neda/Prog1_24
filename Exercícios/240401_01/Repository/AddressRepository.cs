@@ -9,12 +9,13 @@ namespace _240401_01.Repository
 {
     public class AddressRepository
     {
-        private void Save (Address address)
+        public void Create (Address address)
         {
+            address.Id = this.GetNextId();
             DataSet.Addresses.Add(address);
         }
 
-        private Address Retrieve(int id)
+        public Address Read(int id)
         {
             foreach (var a in DataSet.Addresses)
             {
@@ -23,6 +24,23 @@ namespace _240401_01.Repository
             }
             
             return null;
+        }
+
+        public List<Address> Read()
+        {
+            return DataSet.Addresses;
+        }
+
+        private int GetNextId()
+        {
+            int n = 0;
+            foreach (var a in DataSet.Addresses)
+            {
+                if(a.Id > n)
+                    n = a.Id;
+            }
+
+            return n++;
         }
     }
 }

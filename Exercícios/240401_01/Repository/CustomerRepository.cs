@@ -9,12 +9,13 @@ namespace _240401_01.Repository
 {
     public class CustomerRepository
     {
-        private void Save (Customer customer)
+        public void Save(Customer customer)
         {
+            customer.CustomerId = this.GetNextId();
             DataSet.Customers.Add(customer);
         }
 
-        private Customer Retrieve(int id)
+        public Customer Retrieve(int id)
         {
             foreach (var c in DataSet.Customers)
             {
@@ -28,6 +29,42 @@ namespace _240401_01.Repository
         public List<Customer> Retrieve()
         {
             return DataSet.Customers;
+        }
+
+        public List<Customer> RetrieveByName(string name)
+        {
+            List<Customer> retorno = new List<Customer>();
+            foreach (var c in DataSet.Customers)
+            {
+                if (c.Name.Contains(name))
+                {
+                    retorno.Add(c);
+                }
+            }
+            return retorno;
+        }
+
+        public void Delete (int id)
+        {
+            for (int i = 0; i < DataSet.Customers.Count -1; i++)
+            {
+                if (DataSet.Customers[i].CustomerId == id)
+                {
+                    DataSet.Customers.RemoveAt(i);
+                }
+            }
+        }
+
+        private int GetNextId()
+        {
+            int n = 0;
+            foreach (var c in DataSet.Customers)
+            {
+                if(c.CustomerId > n)
+                    n = c.CustomerId;
+            }
+
+            return ++n;
         }
     }
 }

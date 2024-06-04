@@ -12,6 +12,11 @@ namespace _240401_01.Models
         public string EmailAddress { get; set; }
         public List<Address> Addressess { get; set; } = new List<Address>();
 
+        public string PrintToExportDelimited()
+        {
+            return $"{CustomerId};{Name};{EmailAddress}";
+        }
+
         public override string ToString()
         {
             return $"{CustomerId} - {Name} - {EmailAddress}";
@@ -25,6 +30,15 @@ namespace _240401_01.Models
         public Customer(int id)
         {
             CustomerId = id;
+        }
+
+        public bool Validate()
+        {
+            var isValid = true;
+            if(string.IsNullOrWhiteSpace(Name))
+                isValid = false;
+
+            return isValid;
         }
     }
 }

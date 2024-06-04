@@ -9,9 +9,11 @@ namespace _240401_01.Repository
 {
     public class CustomerRepository
     {
-        public void Save(Customer customer)
+
+        public void Save(Customer customer, bool autoGenerateId = true)
         {
-            customer.CustomerId = this.GetNextId();
+            if(autoGenerateId)
+                customer.CustomerId = this.GetNextId();
             DataSet.Customers.Add(customer);
         }
 
@@ -53,6 +55,25 @@ namespace _240401_01.Repository
                     DataSet.Customers.RemoveAt(i);
                 }
             }
+        }
+
+        public bool ImportFromTxt(string line, string delimiter)
+        {
+            if(string.IsNullOrWhiteSpace(line))
+                return false;
+
+            string[] data = line.Split(delimiter);
+
+            if(data.Count() < 1)
+                return false;
+
+            Customer c = new Customer{
+                CustomerId = Convert.ToInt32(data[0] == null ? 0 : data[0]),
+                Name = data[1] == null ? string.Empty : data[1], // if ternário
+                EmailAddress = data[2] ?? string.Empty // checando, caso nulo substitui por string vazia
+            };
+            Save(c, false);
+            return true;
         }
 
         private int GetNextId()

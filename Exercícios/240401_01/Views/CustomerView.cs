@@ -31,7 +31,9 @@ namespace _240401_01.Views
                 Console.WriteLine("1 - Inserir consumidor");
                 Console.WriteLine("2 - Pesquisar consumidor");
                 Console.WriteLine("3 - Listar consumidores");
-                Console.WriteLine("4 - Deletar cliente");
+                Console.WriteLine("4 - Deletar consumidor");
+                Console.WriteLine("5 - Exportar dados delimitados");
+                Console.WriteLine("6 - Importar dados delimitados");
                 Console.WriteLine("0 - Sair");
 
                 int menu = 0;
@@ -56,6 +58,15 @@ namespace _240401_01.Views
                             Console.WriteLine("Digite o ID do cliente para deletar:");
                             DeleteCustomer(Convert.ToInt32(Console.ReadLine()));
                             break;
+                        case 5:
+                            if(customerController.ExportToDelimited())
+                                Console.WriteLine("Lista de consumidores exportada com sucesso.");
+                            else
+                                Console.WriteLine("Falha ao exportar lista de consumidores.");
+                            break;
+                        case 6:
+                            ImportFromDelimited();
+                            break;
                         default:
                             Console.WriteLine("Opção inválida.");
                             aux = true;
@@ -72,6 +83,19 @@ namespace _240401_01.Views
             } while (aux);
         }
 
+
+        private void ImportFromDelimited()
+        {
+            Console.WriteLine("Informe o caminho do arquivo:");
+            string pathFile = Console.ReadLine();
+
+            Console.WriteLine("Informe o caractere delimitador do arquivo:");
+            string delimiter = Console.ReadLine();
+
+            string response = customerController.ImportFromDelimited(pathFile, delimiter);
+
+            Console.WriteLine(response);
+        }
         private void InsertCustomer()
         {
             Console.WriteLine("***************");

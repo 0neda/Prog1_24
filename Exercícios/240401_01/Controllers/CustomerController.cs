@@ -69,7 +69,7 @@ namespace _240401_01.Controllers
                 if (!File.Exists(filePath))
                     return "[ERRO] Arquivo de importação não existente.";
                 
-                using(StreamReader sr = new StreamReader(filePath))
+                using(StreamReader sr = new (filePath))
                 {
                     string line = string.Empty;
                     while((line = sr.ReadLine()) != null)

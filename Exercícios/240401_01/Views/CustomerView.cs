@@ -93,7 +93,6 @@ namespace _240401_01.Views
             string delimiter = Console.ReadLine();
 
             string response = customerController.ImportFromDelimited(pathFile, delimiter);
-
             Console.WriteLine(response);
         }
         private void InsertCustomer()

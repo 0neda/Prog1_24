@@ -53,7 +53,10 @@ namespace _240401_01.Repository
                 if (DataSet.Customers[i].CustomerId == id)
                 {
                     DataSet.Customers.RemoveAt(i);
+                    Console.WriteLine($"Consumidor ID[{id}] deletado.");
                 }
+                else
+                    Console.WriteLine($"Falha ao deletar Consumidor ID [{id}].");
             }
         }
 
